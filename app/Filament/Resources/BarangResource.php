@@ -23,6 +23,8 @@ class BarangResource extends Resource
 
     protected static ?string $navigationLabel = 'Kelola Barang'; // label dari navigasi Customer di sidebar
 
+    protected static ?string $navigationGroup = 'Kelola Gudang'; // melakukan Grouping didalam navigasi bar
+
     public static function form(Form $form): Form
     {
         return $form

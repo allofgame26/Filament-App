@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('detailfakturs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('barang_id')->constrained('barangs','id')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('faktur_id')->constrained('fakturs','id')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->integer('diskon');
+            $table->bigInteger('harga');
+            $table->bigInteger('subtotal');
+            $table->integer('qty');
+            $table->integer('hasil_qty');
             $table->timestamps();
         });
     }

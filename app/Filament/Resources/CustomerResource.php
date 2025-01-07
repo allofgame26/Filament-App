@@ -25,11 +25,11 @@ class CustomerResource extends Resource
 
     protected static ?string $navigationLabel = 'Kelola Customer'; // label dari navigasi Customer di sidebar
 
-    protected static ?string $navigationGroup = 'Kelola'; // melakukan Grouping didalam navigasi bar
+    protected static ?string $navigationGroup = 'Kelola'; // melakukan Grouping didalam navigasi baru
 
     protected static ?string $slug = 'kelola-customer'; // membuat custom untuk address url
 
-    protected static ?string $label = 'Kelola Customer'; // membuat custom untuk address url
+    protected static ?string $label = 'Kelola Customer'; // membuat custom untuk Tulisan didalam Content
 
     public static function form(Form $form): Form
     {
