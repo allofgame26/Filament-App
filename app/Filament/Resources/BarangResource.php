@@ -29,9 +29,15 @@ class BarangResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('nama_barang'),
-                TextInput::make('harga_barang'),
-                TextInput::make('kode_barang'),
+                TextInput::make('nama_barang')
+                ->required()
+                ->unique(),
+                TextInput::make('harga_barang')
+                ->numeric()
+                ->required(),
+                TextInput::make('kode_barang')
+                ->required()
+                ->unique(),
             ]); // membuat Form didalam create, update dan edit
     }
 
