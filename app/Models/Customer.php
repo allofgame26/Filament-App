@@ -18,4 +18,8 @@ class Customer extends Model
     public function faktur(){
         return $this->hasMany(faktur::class,'id_customer','id');
     }
+
+    public function penjualan(){
+        return $this->hasMany(penjualan::class,'customer_id','id');
+    }
 }

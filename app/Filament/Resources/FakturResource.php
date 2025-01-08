@@ -32,6 +32,8 @@ class FakturResource extends Resource
 
     protected static ?string $navigationLabel = 'Kelola Faktur'; // label dari navigasi Customer di sidebar
 
+    protected static ?string $navigationGroup = 'Faktur'; // label dari navigasi Customer di sidebar
+
     protected static ?string $label = 'Kelola Faktur';
 
     protected static ?string $slug = 'kelola-faktur';
@@ -214,9 +216,9 @@ class FakturResource extends Resource
                         'xl' => 1,
                     ])
                     ->reactive()
-                    ->afterStateUpdated(function (Set $set, $state, Get $get){
+                    ->afterStateUpdated(function (Set $set, $state, Get $get) {
                         $total = $get('total');
-                        $charge = $total * ($state/100);
+                        $charge = $total * ($state / 100);
                         $totalfinal = $total + $charge;
 
                         $set('charge', $charge); // menampilkan berapa charge nya
@@ -239,15 +241,28 @@ class FakturResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make("kode_faktur"),
-                TextColumn::make("tanggal_faktur"),
+                TextColumn::make("kode_faktur")
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make("tanggal_faktur")
+                    ->sortable(),
                 TextColumn::make("kode_customer"),
-                TextColumn::make("customer.nama_customer"), // memanggil nama relation didalam modelnya, dan panggil field yang diinginkan
+                TextColumn::make("customer.nama_customer") // memanggil nama relation didalam modelnya, dan panggil field yang diinginkan
+                    ->searchable()
+                    ->sortable(), 
                 TextColumn::make("ket_faktur"),
-                TextColumn::make("total"),
-                TextColumn::make("nominal_charge"),
-                TextColumn::make("charge"),
-                TextColumn::make("total_final"),
+                TextColumn::make("total")
+                    ->numeric()
+                    ->money('IDR'),
+                TextColumn::make("nominal_charge")
+                    ->numeric()
+                    ->label("Nominal Charge (%)"),
+                TextColumn::make("charge")
+                    ->numeric()
+                    ->money('IDR'),
+                TextColumn::make("total_final")
+                    ->numeric()
+                    ->money('IDR'),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(), // mengecek data yang telah dihapus

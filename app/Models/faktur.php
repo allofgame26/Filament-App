@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes; // untuk melakukan soft deletes didalam filament, ini dibutuhkan untuk membuat fitur soft delete 
 
 
 class faktur extends Model
@@ -34,5 +34,10 @@ class faktur extends Model
 
     public function detail_faktur(){
         return $this->hasMany(detailfaktur::class,'faktur_id','id');
+
+    }
+
+    public function penjualan(){
+        return $this->hasMany(penjualan::class,'faktur_id','id');
     }
 }
